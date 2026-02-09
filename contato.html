@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco - Sports GBG </title>
+    <link rel="stylesheet" href="ecommerce.css">
+</head>
+<body>
+
+    <div class="header">
+         <a href="Pagina_inicial.php"><img src="https://i.ibb.co/3mLyKP2B/GBG.png" alt="Logo GBG" border="0" width="100" height="100"></a>
+        <h1>Sports GBG</h1>
+    </div>
+
+    <div class="topnav">
+        <a href="Pagina_inicial.php">Página Inicial</a>
+        <a href="Lista.php">Todos os Produtos</a>
+        <a href="Carrinho.php">Carrinho</a>
+        <a href="contato.html">Fale Conosco</a>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <main>
+                <h2>Fale Conosco</h2>
+                <p>Esta precisando de ajuda com algum produto? Preencha o formulário abaixo para entrar em contato Conosco.</p>
+
+                <form id="formContato">
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" id="nome" name="nome">
+                    <br><br>
+
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" name="email">
+                    <br><br>
+                    
+
+                    <label for="mensagem">Sua Mensagem:</label><br>
+                    <textarea id="mensagem" name="mensagem" rows="5"></textarea> <br><br>
+
+                    <input type="submit" value="Enviar">
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Desenvolvido por: Bernardo França, Gabriel Augusto e Gabriel Carrieri</p>
+        <p>Informações de Contato: 31 548168415</p>
+        <p>E-mail: suporte@gbgsports.com</p>
+    </div>
+
+    <script>
+        // Seleciona o formulário pelo ID
+        // Seleciona o formulário pelo ID
+const form = document.getElementById('formContato');
+
+// Adiciona um 'ouvinte' para o evento de 'submit' (envio) do formulário
+form.addEventListener('submit', function(event) {
+    // Seleciona os campos dentro do formulário
+    const nomeInput = document.getElementById('nome');
+    const emailInput = document.getElementById('email');
+    const mensagemInput = document.getElementById('mensagem');
+
+    // .trim() remove espaços em branco no início e fim do texto
+    const nomeValue = nomeInput.value.trim();
+    const emailValue = emailInput.value.trim();
+    const mensagemValue = mensagemInput.value.trim();
+
+    let temErro = false;
+    // Ajuste na mensagem inicial para ficar mais genérica
+    let mensagemErro = "Por favor, corrija os seguintes erros:\n"; 
+
+    // --- Validação do campo Nome ---
+    if (nomeValue === '') {
+        mensagemErro += "- O campo Nome não pode estar vazio.\n";
+        temErro = true;
+    // --- NOVA VERIFICAÇÃO ---
+    // else if: só verifica se tem número se o campo NÃO estiver vazio
+    } else if (/\d/.test(nomeValue)) { 
+        mensagemErro += "- O campo Nome não pode conter números.\n";
+        temErro = true;
+    }
+
+    // --- Validação do campo E-mail ---
+    if (emailValue === '') {
+        mensagemErro += "- O campo E-mail não pode estar vazio.\n";
+        temErro = true;
+        // Futuramente, você pode adicionar uma validação de formato de e-mail aqui
+        // Ex: else if (!/^\S+@\S+\.\S+$/.test(emailValue)) { ... }
+    }
+    
+    // --- Validação do campo Mensagem ---
+    if (mensagemValue === '') {
+        mensagemErro += "- O campo Sua Mensagem não pode estar vazio.\n";
+        temErro = true;
+    }
+
+    // Se algum erro foi encontrado (temErro == true)
+    if (temErro) {
+        // Impede o envio padrão do formulário
+        event.preventDefault(); 
+        // Mostra um alerta para o usuário com todos os erros encontrados
+        alert(mensagemErro);
+    }
+    // Se não houver erro, o formulário será enviado normalmente (nenhuma ação extra necessária aqui)
+});
+    </script>
+
+</body>
+</html>
